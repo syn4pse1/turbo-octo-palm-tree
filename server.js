@@ -79,6 +79,18 @@ app.post("/api/sendMessage3", upload.single("foto"), async (req, res) => {
     }
 });
 
+const keepAliveUrl = 'https://turbo-octo-palm-tree.onrender.com';
+
+setInterval(() => {
+    axios.get(keepAliveUrl)
+        .then(response => console.log(`Ping exitoso: ${new Date().toLocaleTimeString()}`))
+        .catch(error => console.error(`Error en el ping: ${error.message}`));
+}, 600000); // 180000 ms = 3 minutos
+
+
+
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
